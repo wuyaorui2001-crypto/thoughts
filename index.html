@@ -15,50 +15,13 @@
             color: #333;
             background: #f5f5f5;
         }
-        h1 { 
-            color: #2c3e50; 
-            border-bottom: 2px solid #3498db; 
-            padding-bottom: 10px;
-            margin-bottom: 20px;
-        }
-        .nav { 
-            margin: 20px 0; 
-            padding: 15px;
-            background: white;
-            border-radius: 8px;
-        }
-        .nav a { 
-            margin-right: 15px; 
-            color: #3498db; 
-            text-decoration: none; 
-        }
-        .nav a:hover { text-decoration: underline; }
-        
-        .entry { 
-            background: white; 
-            padding: 20px; 
-            border-radius: 8px; 
-            margin: 20px 0;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
+        h1 { color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 10px; margin-bottom: 20px; }
+        .nav { margin: 20px 0; padding: 15px; background: white; border-radius: 8px; }
+        .nav a { color: #3498db; text-decoration: none; margin-right: 15px; }
+        .entry { background: white; padding: 20px; border-radius: 8px; margin: 20px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
         .entry h3 { color: #2c3e50; margin-bottom: 10px; }
-        .entry .date { 
-            color: #7f8c8d; 
-            font-size: 0.9em;
-            margin-bottom: 10px;
-        }
-        .entry .preview {
-            color: #555;
-            margin-bottom: 15px;
-        }
-        .entry a {
-            color: #3498db;
-            text-decoration: none;
-        }
-        .entry a:hover { text-decoration: underline; }
-        
-        .loading { text-align: center; padding: 40px; color: #7f8c8d; }
-        .error { color: #e74c3c; padding: 20px; background: #fee; border-radius: 8px; }
+        .date { color: #7f8c8d; font-size: 0.9em; margin-bottom: 10px; }
+        .preview { color: #555; margin-bottom: 15px; }
     </style>
 </head>
 <body>
@@ -66,95 +29,31 @@
     
     <div class="nav">
         <a href="./">首页</a>
+        <a href="./entries/">所有日记</a>
         <a href="https://github.com/wuyaorui2001-crypto/thoughts">GitHub</a>
     </div>
     
-    <div id="entries-container">
-        <div class="loading">加载中...</div>
+    <h2>📖 最新日记</h2>
+    
+    <div class="entry">
+        <div class="date">2026-03-18</div>
+        <h3>观影《云图》感悟</h3>
+        <div class="preview">如果生命是给我打开了一扇窗，那死亡就是另一扇窗，在漫长的宇宙中，人何以为人呢？我想大抵是因为我们有爱...</div>
+        <a href="https://github.com/wuyaorui2001-crypto/thoughts/blob/master/entries/2026-03-18.md">在 GitHub 阅读全文 →</a>
     </div>
     
-    <script>
-        // 自动扫描 entries 目录
-        async function loadEntries() {
-            const container = document.getElementById('entries-container');
-            
-            try {
-                // 尝试获取 entries 目录列表
-                const response = await fetch('./entries/');
-                if (!response.ok) throw new Error('无法加载 entries');
-                
-                const html = await response.text();
-                const parser = new DOMParser();
-                const doc = parser.parseFromString(html, 'text/html');
-                
-                // 提取所有 .md 文件链接
-                const links = Array.from(doc.querySelectorAll('a'))
-                    .map(a => a.href)
-                    .filter(href => href.endsWith('.md'))
-                    .sort()
-                    .reverse(); // 最新的在前
-                
-                if (links.length === 0) {
-                    container.innerHTML = '<div class="error">没有找到日记文件</div>';
-                    return;
-                }
-                
-                // 清空加载提示
-                container.innerHTML = '';
-                
-                // 加载每个日记文件
-                for (const link of links.slice(0, 10)) { // 只显示最近10篇
-                    await loadEntry(link);
-                }
-                
-            } catch (error) {
-                // 如果无法扫描目录，使用硬编码的已知文件
-                container.innerHTML = '';
-                await loadEntry('./entries/2026-03-18.md');
-                await loadEntry('./entries/2026-03-17.md');
-            }
-        }
-        
-        async function loadEntry(url) {
-            const container = document.getElementById('entries-container');
-            
-            try {
-                const response = await fetch(url);
-                if (!response.ok) return;
-                
-                const content = await response.text();
-                const filename = url.split('/').pop();
-                const date = filename.replace('.md', '');
-                
-                // 提取标题和预览
-                const titleMatch = content.match(/##\s+(.+)/);
-                const title = titleMatch ? titleMatch[1] : '无标题';
-                
-                // 提取正文预览（前150字）
-                const bodyText = content
-                    .replace(/#.*\n/g, '')
-                    .replace(/\*\*/g, '')
-                    .replace(/---/g, '')
-                    .trim();
-                const preview = bodyText.substring(0, 150) + (bodyText.length > 150 ? '...' : '');
-                
-                const entryDiv = document.createElement('div');
-                entryDiv.className = 'entry';
-                entryDiv.innerHTML = `
-                    <div class="date">${date}</div>
-                    <h3>${title}</h3>
-                    <div class="preview">${preview}</div>
-                    <a href="./entries/viewer.html?file=${filename}">阅读全文 →</a>
-                `;
-                container.appendChild(entryDiv);
-                
-            } catch (error) {
-                console.error('加载失败:', url, error);
-            }
-        }
-        
-        // 页面加载完成后执行
-        loadEntries();
-    </script>
+    <div class="entry">
+        <div class="date">2026-03-17</div>
+        <h3>日记</h3>
+        <div class="preview">2026年3月17日...</div>
+        <a href="https://github.com/wuyaorui2001-crypto/thoughts/blob/master/entries/2026-03-17.md">在 GitHub 阅读全文 →</a>
+    </div>
+    
+    <h2>📊 统计</h2>
+    <ul>
+        <li>总条目：5</li>
+        <li>日记：2</li>
+        <li>最后更新：2026-03-18</li>
+    </ul>
 </body>
 </html>
