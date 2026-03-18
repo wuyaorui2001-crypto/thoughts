@@ -348,7 +348,57 @@ AI：
 - **可视化**: https://wuyaorui2001-crypto.github.io/thoughts/
 - **自动部署**: 推送代码后 GitHub Actions 自动更新可视化页面
 
+## 11. 自动同步工作流
+
+### 完整流程
+
+```
+用户提交想法 → AI记录到 entries/ → 运行 auto-sync.py → 推送到GitHub → GitHub Actions部署Pages
+```
+
+### Agent操作步骤
+
+当用户提交想法后：
+
+1. **记录想法**
+   - 解析用户输入
+   - 自动打标签
+   - 写入 `entries/YYYY-MM-DD.md`
+
+2. **自动同步**（每次记录后执行）
+   ```bash
+   python auto-sync.py
+   ```
+   
+   此脚本会自动：
+   - 生成最新可视化页面 (`reports/index.html`)
+   - 提交所有更改到 Git
+   - 推送到 GitHub
+   - GitHub Actions 自动部署到 Pages
+
+3. **通知用户**
+   - 告知记录已完成
+   - 提供在线查看链接
+   - 说明部署等待时间（1-2分钟）
+
+### 手动同步（备用）
+
+如果自动同步失败，可手动执行：
+
+```bash
+# 进入项目目录
+cd "D:\Me&AI\Project\thoughts"
+
+# 运行同步脚本
+python auto-sync.py
+```
+
+### 查看在线页面
+
+- **在线地址**: https://wuyaorui2001-crypto.github.io/thoughts/
+- **部署状态**: https://github.com/wuyaorui2001-crypto/thoughts/actions
+
 ---
 
 *创建日期：2026-03-17*
-*版本：v1.0*
+*版本：v1.1*
