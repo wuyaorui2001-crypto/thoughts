@@ -73,12 +73,15 @@ def sync_to_github():
         print(f"[ERROR] Git commit 失败")
         return False
     
-    # 5. 推送到GitHub
+    # 5. 推送到GitHub（先尝试main，失败则尝试master）
     print("[INFO] 推送到GitHub...")
-    success, stdout, stderr = run_command("git push origin master", cwd=project_dir)
+    success, stdout, stderr = run_command("git push origin main", cwd=project_dir)
     if not success:
-        print(f"[ERROR] Git push 失败")
-        return False
+        print("[WARN] main分支推送失败，尝试master分支...")
+        success, stdout, stderr = run_command("git push origin master", cwd=project_dir)
+        if not success:
+            print(f"[ERROR] Git push 失败（main和master都失败）")
+            return False
     
     print("[OK] 同步完成!")
     print(f"[INFO] 查看在线页面: https://wuyaorui2001-crypto.github.io/thoughts/")
