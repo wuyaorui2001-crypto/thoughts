@@ -1,0 +1,10 @@
+# Obsidian 配置（机器特定）
+.obsidian/
+.obsidian/*
+
+# 临时文件
+*.tmp
+*.swp
+
+# macOS
+.DS_Store
