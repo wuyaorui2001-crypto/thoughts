@@ -1,7 +1,7 @@
-1. 启动时：
+1. 启动时：claude --dangerously-skip-permissions
 
 # skill
 1.  /plan
-2.
+2.  /superpowers
 # 使用技巧
 记得使用agent team
