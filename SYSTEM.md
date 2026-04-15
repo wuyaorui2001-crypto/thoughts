@@ -204,7 +204,7 @@ Obsidian wikilink 从 Vault 根目录解析，**必须使用完整路径**：
 
 **前置动作（强制）**：每次生成 AI 反馈或 AI 日记前，必须执行以下步骤——
 
-1. 用 Read 工具读取 `D:\Me&AI\agent-workspace\03-SKILLS\ljg-writes\SKILL.md` 全文
+1. 用 Read 工具读取 `D:\Me&AI\agent-workspace\03-SKILLS\ljg-skills\ljg-writes\SKILL.md` 全文
 2. 内化其全部约束：口语检验、密度规则、过滤 AI 痕迹、意外检验
 3. 按 ljg-writes 流程执行：找核 → 攻核 → 找类比 → 展开并写 → 磨
 
@@ -250,7 +250,7 @@ Obsidian wikilink 从 Vault 根目录解析，**必须使用完整路径**：
 1. 读取 `SYSTEM.md`（本文件）
 2. 查看 `Thoughts 索引.md` 或 `_index/YYYY-索引.md`
 3. 查看当日想法文件（如存在）
-4. **（关键）** Read `D:\Me&AI\agent-workspace\03-SKILLS\ljg-writes\SKILL.md` 全文，作为 AI 反馈和 AI 日记的写作依据
+4. **（关键）** Read `D:\Me&AI\agent-workspace\03-SKILLS\ljg-skills\ljg-writes\SKILL.md` 全文，作为 AI 反馈和 AI 日记的写作依据
 
 ---
 
