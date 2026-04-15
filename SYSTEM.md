@@ -47,7 +47,9 @@ thoughts/
 │   └── YYYY-索引.md
 ├── knowledge/              # 知识库
 │   └── Paul Graham/
-├── archive/                 # 归档
+├── Article/                 # 用户文章
+├── .obsidian/              # Obsidian 配置
+├── .learnings/             # 项目学习记录
 ├── SYSTEM.md               # 本文件
 └── Thoughts 索引.md        # 总入口
 ```
