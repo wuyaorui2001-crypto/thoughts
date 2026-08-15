@@ -47,7 +47,7 @@ thoughts/
 │   └── YYYY-索引.md
 ├── knowledge/              # 知识库
 │   └── Paul Graham/
-├── Article/                 # 用户文章
+├── Article/                 # 用户文章（排版：Article/基础格式.md，公众号与网站分列）
 ├── .obsidian/              # Obsidian 配置
 ├── .learnings/             # 项目学习记录
 ├── SYSTEM.md               # 本文件
