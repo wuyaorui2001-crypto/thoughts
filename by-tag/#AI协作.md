@@ -16,6 +16,7 @@
 | [[entries/2026/Q2/04/2026-04-06-想法]] | 李世石时刻：每个人都在经历自己的AI冲击 |
 | [[entries/2026/Q2/04/2026-04-09-想法]] | ambitious objective 难以通过目标设定实现 |
 | [[entries/2026/Q2/04/2026-04-09-想法]] | ai is a great life coach |
+| [[entries/2026/Q4/10/2026-10-04-想法]] | 云端和本地用 Git 和 GitHub 联通比较方便 |
 
 ---
 
