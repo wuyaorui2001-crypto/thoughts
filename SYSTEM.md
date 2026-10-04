@@ -1,7 +1,7 @@
 # SYSTEM - Thoughts 项目操作指南
 
-> 版本: v4.2
-> 更新: 2026-09-28
+> 版本: v4.3
+> 更新: 2026-10-04
 > 状态: 每天一个想法文件，多想法汇聚；文章、OKR、播客、知识库另区存放
 
 ---
@@ -61,6 +61,7 @@ thoughts/
 ├── Podcast/                 # 播客方向。和公众号搭配，不追热点
 ├── .obsidian/              # Obsidian 配置
 ├── .learnings/             # 历史学习记录。与本文件冲突时，以本文件为准
+├── .gitattributes          # 多端同时追加时的合并规则，见「多端写入」
 ├── SYSTEM.md               # 本文件
 └── Thoughts 索引.md        # 总入口
 ```
@@ -309,6 +310,34 @@ Obsidian wikilink 从 Vault 根目录解析，**必须使用完整路径**：
 3. 插件自动 push 到 GitHub
 
 **仓库**：https://github.com/wuyaorui2001-crypto/thoughts
+
+**本机 Obsidian Git 当前设置**：启动时先拉；每 5 分钟拉一次；改动后自动提交；推送前先拉（merge）。`.obsidian/` 不进 Git。
+
+---
+
+## 多端写入（CRITICAL）
+
+电脑上的 Obsidian / 本地 Agent，和手机或网页上的云端 Agent，改的是同一个 GitHub 仓库。
+
+**会出什么事**：
+- 同一天两边都往当日文件末尾追加，或都往索引表末尾加一行，Git 默认判为冲突，Obsidian 同步卡住，直到手动解决
+- 同一条想法两边各记一次，Git 不报错，但文件里会多一条
+
+**已做的处理**：`.gitattributes` 对 `entries/`、`by-tag/`、`_index/`、`Thoughts 索引.md` 设了 `merge=union`。两边同时追加时，双方内容都保留，不出冲突标记。这些文件只追加不改写，所以能这么做。`SYSTEM.md`、`Article/`、`knowledge/`、`Life OKR/` 不在里面，仍按普通方式合并。
+
+**本地 Agent（电脑上的 Cursor）**：
+- 直接改工作区文件，提交和推送交给 Obsidian Git，不自己 commit / push
+- Obsidian 没开时改动不会同步。告诉用户「打开 Obsidian 后会自动推」
+
+**云端 Agent（手机 / 网页）**：
+1. 写之前先拉最新：`git pull`（新会话就重新 clone）
+2. 追加前，在当日文件里搜一下这条原文，已有就不再写，告诉用户
+3. 写完立刻 commit 并 push，不要攒着
+4. push 被拒：`git pull --no-rebase` 再 push。禁止 `--force`
+
+**合并后检查**：`_index/YYYY-索引.md` 的月度行是整行改写的。两边同月都记过时，合并后可能出现两行同月份，把它们并成一行。
+
+**已知限制**：手机版 Obsidian 的 Git 插件不认 `.gitattributes`。如果以后在手机 Obsidian 里也开 Git 同步，同一天两端追加仍可能冲突。
 
 ---
 

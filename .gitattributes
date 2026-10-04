@@ -1,0 +1,5 @@
+# 想法和索引只追加不改写：两端同时追加时保留双方内容，不产生冲突标记
+entries/**/*.md merge=union
+by-tag/*.md merge=union
+_index/*.md merge=union
+Thoughts[[:space:]]索引.md merge=union
