@@ -313,7 +313,7 @@ Obsidian wikilink 从 Vault 根目录解析，**必须使用完整路径**：
 
 **本机 Obsidian Git 当前设置**：启动时先拉；每 5 分钟拉一次；改动后自动提交；推送前先拉（merge）。`.obsidian/` 不进 Git。
 
-**本机网络**：电脑直连 GitHub 不稳定，Git 不会自动走系统代理。本仓库 `.git/config` 已设 `http.https://github.com.proxy = http://127.0.0.1:7897`。本地拉不到云端记录时，先看代理软件是否开着、端口是否仍是 7897。
+**本机网络**：电脑直连 GitHub 不稳定，Git 不会自动走系统代理。代理软件已开 TUN 模式（虚拟网卡 `Meta`），Git 和 Obsidian 自动走代理，仓库里不单独配代理。本地拉不到云端记录时，先看代理软件和 TUN 是否开着。
 
 ---
 
